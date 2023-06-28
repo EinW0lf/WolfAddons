@@ -129,6 +129,14 @@ class Config {
 		subcategory: "Riftstalker Bloodfiend",
 	})
 	highlightVampires = false;
+
+	@ColorProperty({
+		name: "Steak Stake Highlight Color",
+		description: "Pick a color for the Steak Stake Highlight",
+		category: "Slayer",
+		subcategory: "Riftstalker Bloodfiend",
+	})
+	steakColor = Color.RED;
 }
 
 export default new Config();

@@ -3,7 +3,7 @@ import Config from "../../../config";
 import { getScoreboard } from "../../../utils/getScoreboard";
 
 let name = "☠ Bloodfiend";
-let refreshRate = 2; // keep it low for now, so it does not create useless lag (still scans each mob 2x a second)
+let refreshRate = 2;
 
 let entities = [];
 
@@ -17,9 +17,7 @@ function checkWorldEntities() {
 				.replace(/§[0-9a-fk-or]/g, "")
 				.includes(name)
 		) {
-			// if (allEntities[i].isInvisible()) return;
 			entities.push(allEntities[i]);
-			// console.log(allEntities[i]);
 		}
 	}
 }
@@ -37,8 +35,15 @@ register("renderWorld", () => {
 			let x = e.getRenderX();
 			let y = e.getRenderY();
 			let z = e.getRenderZ();
+
+			const color = Config.steakColor;
+			const r = color.getRed();
+			const g = color.getGreen();
+			const b = color.getBlue();
+			const a = (color.getAlpha() & 0xff) / 255.0;
+
 			//  (x, y, z, w, h, red, green, blue, alpha, phase)
-			RenderLib.drawInnerEspBox(x, y - 2, z, 0.8, 1.9, 255, 0, 0, 0.5, false);
+			RenderLib.drawInnerEspBox(x, y - 2, z, 0.8, 1.9, r, g, b, a.toFixed(2), false);
 		} else {
 			entities.splice(i, 1);
 		}

@@ -4,6 +4,7 @@ WolfAddons is a Hypixel Skyblock module that provides a variety of features to i
 
 **Features:**
 
+-   **/rift** A shortcut command for the /warp wizard
 -   **Rift Timer:** Displays a timer on your screen that shows how much time you have left in the current rift.
 -   **Rift Time Warning:** Creates a warning when you have less than your configured time left. (up to 5 minutes)
 -   **Vampire Slayer - Health Display:** Shows your current Hearts left on screen _(also shows max hearts but that part is still WIP, as it only shows base health + armor health)_.

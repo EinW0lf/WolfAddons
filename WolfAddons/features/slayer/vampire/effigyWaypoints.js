@@ -32,7 +32,7 @@ register("renderWorld", () => {
 					if (segment.startsWith("§7⧯")) {
 						const { x, y, z } = waypoints[index];
 
-						Tessellator.drawString(`Disabled Effigy`, x + 0.5, y + 3.5, z + 0.5, 0xff0000, true, 1, true);
+						Tessellator.drawString(`Disabled Effigy`, x + 0.5, y + 3.5, z + 0.5, 0xff0000, true, 0.8, true);
 						renderBeaconBeam(x, y, z, 1, 0, 0, 0.6, true);
 					}
 				});
