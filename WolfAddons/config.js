@@ -97,7 +97,7 @@ class Config {
 
 	@SwitchProperty({
 		name: "Hearts Overlay",
-		description: "§6This Feature is WIP§r\n\nDisplays your hearts on a custom location (only active in the vampire slayer area)\n\nThis does not show any max health updates from mobs that reduce your max health, if you know how i can detect that too please contact me on discord @einwolf",
+		description: "Displays your hearts on a custom location (only active in the vampire slayer area)",
 		category: "Slayer",
 		subcategory: "Riftstalker Bloodfiend",
 	})
