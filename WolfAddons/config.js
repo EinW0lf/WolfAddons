@@ -2,7 +2,7 @@ import { @Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchPrope
 
 @Vigilant("WolfAddons", "WolfAddons", {
 	getCategoryComparator: () => (a, b) => {
-		const categories = ["Rift", "Slayer"];
+		const categories = ["Rift", "Slayer", "Mining"];
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	},
 })
@@ -137,6 +137,14 @@ class Config {
 		subcategory: "Riftstalker Bloodfiend",
 	})
 	steakColor = Color.RED;
+
+	@SwitchProperty({
+		name: "Corpse Esp",
+		description: "Toggle the Corpse esp feature",
+		category: "Mining",
+		subcategory: "Glacite Mineshafts",
+	})
+	CorpseEsp = true;
 }
 
 export default new Config();

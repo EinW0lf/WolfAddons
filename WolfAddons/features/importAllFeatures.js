@@ -6,3 +6,7 @@ import "./rift/riftTimeWarn";
 import "./slayer/vampire/highlightVampires";
 import "./slayer/vampire/heartsDisplay";
 import "./slayer/vampire/effigyWaypoints";
+
+/** Other Features */
+import "./garden/pestEsp";
+import "./mining/corpseEsp";

@@ -2,39 +2,38 @@ import RenderLib from "../../../../RenderLib";
 import Config from "../../../config";
 import { getScoreboard } from "../../../utils/getScoreboard";
 
-let name = "☠ Bloodfiend";
-let refreshRate = 2;
+const name = "☠ Bloodfiend";
+const refreshRate = 2;
 
 let entities = [];
 
 function checkWorldEntities() {
-	let allEntities = World.getAllEntities();
-	entities = [];
-	for (let i = 0; i < allEntities.length; i++) {
-		if (
-			allEntities[i]
-				.getName()
-				.replace(/§[0-9a-fk-or]/g, "")
-				.includes(name)
-		) {
-			entities.push(allEntities[i]);
-		}
-	}
+	const allEntities = World.getAllEntities();
+	entities = allEntities.filter((entity) =>
+		entity
+			.getName()
+			.replace(/§[0-9a-fk-or]/g, "")
+			.includes(name)
+	);
 }
 
 register("step", () => {
-	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) return;
+	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
+		return;
+	}
 	checkWorldEntities();
 }).setFps(refreshRate);
 
 register("renderWorld", () => {
-	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) return;
+	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
+		return;
+	}
 	for (let i = 0; i < entities.length; i++) {
-		e = entities[i];
+		const e = entities[i];
 		if (e && e.getName().includes("҉")) {
-			let x = e.getRenderX();
-			let y = e.getRenderY();
-			let z = e.getRenderZ();
+			const x = e.getRenderX();
+			const y = e.getRenderY();
+			const z = e.getRenderZ();
 
 			const color = Config.steakColor;
 			const r = color.getRed();

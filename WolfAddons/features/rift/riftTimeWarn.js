@@ -18,10 +18,7 @@ register("tick", () => {
 		}
 		text += " of Rift Time left";
 
-		/** Show title on screen */
 		Client.showTitle(text, "", 10, 40, 10);
-		/** Play sound */
-		// World.playSound("sound_file", volume, pitch);
 
 		titleShown = true;
 	} else if (Skyblock.area !== "The Rift" && titleShown) {
