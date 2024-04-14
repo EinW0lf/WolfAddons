@@ -10,6 +10,7 @@ let entitiesWithBoots = [];
 let isInMineshaft = false;
 let entities = [];
 let announcedCorpses = [];
+let corpseCount = 0;
 
 function checkWorldEntities() {
 	const allEntities = World.getAllEntities();
@@ -81,7 +82,12 @@ register("renderWorld", () => {
 				if (Config.CorpseAnnouncer) {
 					function announceCorpse(x, y, z, colorType, configKey) {
 						if (Config[configKey]) {
-							setTimeout(ChatLib.say(`/party chat x: ${roundedX}, y: ${roundedY}, z: ${roundedZ} ${colorType}`), 1100);
+							corpseCount++;
+							const delay = corpseCount > 1 ? 500 * (corpseCount - 1) : 0;
+
+							setTimeout(() => {
+								ChatLib.say(`/pc x: ${roundedX}, y: ${roundedY}, z: ${roundedZ} ${colorType}`);
+							}, delay);
 						}
 					}
 
