@@ -7,6 +7,11 @@ import "./slayer/vampire/highlightVampires";
 import "./slayer/vampire/heartsDisplay";
 import "./slayer/vampire/effigyWaypoints";
 
-/** Other Features */
-import "./garden/pestEsp";
+/** Mining Features */
 import "./mining/corpseEsp";
+import "./mining/corpseOverlay";
+// import "./mining/commissionOverlay";
+import "./mining/shaft";
+
+/** party */
+import "./party/commands";

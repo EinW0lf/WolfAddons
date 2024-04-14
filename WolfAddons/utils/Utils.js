@@ -12,6 +12,10 @@ export const data = new PogObject(
 			x: 0,
 			y: 0,
 		},
+		corpseDisplay: {
+			x: 0,
+			y: 0,
+		},
 	},
 	"data/data.json"
 );

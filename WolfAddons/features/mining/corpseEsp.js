@@ -45,6 +45,7 @@ register("step", () => {
 		updateEntitiesWithBoots();
 	} else {
 		entitiesWithBoots = [];
+		announcedCorpses = [];
 	}
 }).setFps(refreshRate);
 
@@ -63,11 +64,42 @@ register("renderWorld", () => {
 			const bootsString = JSON.stringify(item.getNBT().toObject(), "", 4);
 			const boots = JSON.parse(bootsString);
 			const colors = colorData[boots.tag.ExtraAttributes.id];
-			const check = `${colors.type}-${Math.floor(x)}, y: ${Math.floor(y)}, z: ${Math.floor(z)}`;
+
+			const roundedX = Math.floor(x);
+			const roundedY = Math.floor(y);
+			const roundedZ = Math.floor(z);
+
+			if (roundedX === -154 && roundedY === 12 && roundedZ === -174) return;
+			if (roundedX === -131 && roundedY === 23 && roundedZ === -172) return;
+
+			const check = `${colors.type}-${roundedX}, y: ${roundedY}, z: ${roundedZ}`;
 			if (announcedCorpses.indexOf(check) < 0) {
 				announcedCorpses.push(check);
-				const clickableMessage = new Message(new TextComponent(`§l!!Found Corpse!!§r Type: ${colors.color}${colors.type}§r\n§eClick on the message to send it in party chat`).setClick("run_command", `/party chat x: ${Math.floor(x)}, y: ${Math.floor(y)}, z: ${Math.floor(z)} ${colors.type}`));
+				const clickableMessage = new Message(new TextComponent(`§l!!Found Corpse!!§r Type: ${colors.color}${colors.type}§r\n§eClick on the message to send it in party chat`).setClick("run_command", `/party chat x: ${roundedX}, y: ${roundedY}, z: ${roundedZ} ${colors.type}`));
 				ChatLib.chat(clickableMessage);
+
+				if (Config.CorpseAnnouncer) {
+					function announceCorpse(x, y, z, colorType, configKey) {
+						if (Config[configKey]) {
+							setTimeout(ChatLib.say(`/party chat x: ${roundedX}, y: ${roundedY}, z: ${roundedZ} ${colorType}`), 1100);
+						}
+					}
+
+					switch (colors.type) {
+						case "Lapis":
+							announceCorpse(x, y, z, colors.type, "LapisCorpse");
+							break;
+						case "Tungsten":
+							announceCorpse(x, y, z, colors.type, "TungstenCorpse");
+							break;
+						case "Umber":
+							announceCorpse(x, y, z, colors.type, "UmberCorpse");
+							break;
+						case "Vanguard":
+							announceCorpse(x, y, z, colors.type, "VanguardCorpse");
+							break;
+					}
+				}
 			}
 			RenderLib.drawEspBox(x, y, z, 1, 1, colors.r, colors.g, colors.b, 1, true);
 			Tessellator.drawString(colors.type, x, y + 0.5, z, colors.hex, true, 1, true);
