@@ -14,9 +14,7 @@ register("step", () => {
 
 			new Message(
 				`&9&m${ChatLib.getChatBreak(" ")}\n`,
-				new TextComponent(`&aA new version of WolfAddons is available! (&c${stuff.latestVersion}&a) Click to go to the Github release! `)
-					.setClick("open_url", "https://github.com/EinW0lf/WolfAddons/releases/tag/main")
-					.setHover("show_text", "&aClick to open\n&7https://github.com/EinW0lf/WolfAddons/releases/tag/main"),
+				new TextComponent(`&aA new version of WolfAddons is available! (&c${stuff.latestVersion}&a) Click to go to the Github release! `).setClick("open_url", "https://github.com/EinW0lf/WolfAddons").setHover("show_text", "&aClick to open\n&7https://github.com/EinW0lf/WolfAddons"),
 				new TextComponent(`&7(Changelog)`).setHover("show_text", `&6&nChangeLog for ${stuff.latestVersion}:\n &7- ` + stuff.changelog.join("\n &7- ")),
 				`\n&9&m${ChatLib.getChatBreak(" ")}`
 			).chat();
