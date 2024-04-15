@@ -4,8 +4,8 @@
 	"author": "einwolf",
 	"changelog": [
 		"Added a button to play the sound of a mineshaft spawn, instead of needing to use a command to test it",
-		"Added another sound to the Glacite Mineshaft spawn (selectable)",
-		"Text in the config is a bit more clear now",
-		"fixed a module being required, while it wasn't listed in t he required modules"
+		"Added another sound to the Glacite Mineshaft spawn (selectable))",
+		"The text in the config is a bit clearer now",
+		"fixed a module is required, while it wasn't listed in the required modules"
 	]
 }
