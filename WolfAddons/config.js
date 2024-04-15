@@ -28,7 +28,6 @@ class Config {
 		this.addDependency("Umber Corpse", "Corpse auto Announcer");
 		this.addDependency("Vanguard Corpse", "Corpse auto Announcer");
 
-
 		this.addDependency("Mineshaft Sound Type", "Mineshaft Sound");
 		this.addDependency("Mineshaft Sound Volume", "Mineshaft Sound");
 		this.addDependency("Mineshaft Sound Test", "Mineshaft Sound");
@@ -178,13 +177,13 @@ class Config {
 	})
 	MineshaftSound = false;
 	@SelectorProperty({
-        name: 'Mineshaft Sound Type',
-        description: 'Choose the type',
-        category: "Mining",
+		name: "Mineshaft Sound Type",
+		description: "Choose the type",
+		category: "Mining",
 		subcategory: "Glacite Tunnels",
-        options: ['Stone Rumble', 'Voice'],
-    })
-    MineshaftSoundType = 0; // Stores index of option
+		options: ["Stone Rumble", "Voice"],
+	})
+	MineshaftSoundType = 0; // Stores index of option
 	@SliderProperty({
 		name: "Mineshaft Sound Volume",
 		description: "Adjust the volume of the sound that plays when a mineshaft spawns.\n\nTo test the sound and tile use the command §e/testmineshaft §ror §e/mineshafttest",
@@ -208,7 +207,8 @@ class Config {
 
 	@SwitchProperty({
 		name: "Corpse Esp",
-		description: "Toggle the Corpse Waypoint (esp) feature\n\n§6This feature is basically a cheat, but it is not detectable by Hypixel, unless you send the coordinates into the chat (it's most unlikely they will actually check for that).\n§6Mining through a wall to get to a corpse is also suspicious in case a staff member spectates",
+		description:
+			"Toggle the Corpse Waypoint (esp) feature\n\n§6This feature is basically a cheat, but it is not detectable by Hypixel, unless you send the coordinates into the chat (it's most unlikely they will actually check for that).\n§6Mining through a wall to get to a corpse is also suspicious in case a staff member spectates",
 		category: "Mining",
 		subcategory: "Glacite Mineshafts",
 	})

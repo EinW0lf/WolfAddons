@@ -87,6 +87,7 @@ register("renderWorld", () => {
 
 							setTimeout(() => {
 								ChatLib.say(`/pc x: ${roundedX}, y: ${roundedY}, z: ${roundedZ} ${colorType}`);
+								corpseCount--;
 							}, delay);
 						}
 					}

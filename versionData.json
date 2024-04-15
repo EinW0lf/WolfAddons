@@ -1,11 +1,6 @@
 {
 	"moduleName": "WolfAddons",
-	"latestVersion": "0.1.4",
+	"latestVersion": "0.2.1",
 	"author": "einwolf",
-	"changelog": [
-		"Added a button to play the sound of a mineshaft spawn, instead of needing to use a command to test it",
-		"Added another sound to the Glacite Mineshaft spawn (selectable))",
-		"The text in the config is a bit clearer now",
-		"fixed a module is required, while it wasn't listed in the required modules"
-	]
+	"changelog": ["Bumping the version to 0.2.1, due to previously wrong versioning", "Fixed a bug that would make the corpse announcer slower over time"]
 }
