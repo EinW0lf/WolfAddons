@@ -1,8 +1,8 @@
-import { @Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchProperty, @SliderProperty, @PercentSliderProperty, @DecimalSliderProperty, Color } from '../Vigilance';
+import { @Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchProperty, @SliderProperty, @PercentSliderProperty, @DecimalSliderProperty, @SelectorProperty, Color } from '../Vigilance';
 
 @Vigilant("WolfAddons", "WolfAddons", {
 	getCategoryComparator: () => (a, b) => {
-		const categories = ["Rift", "Slayer", "Mining", "Party","Misc"];
+		const categories = ["Rift", "Slayer", "Mining", "Party", "Misc"];
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	},
 })
@@ -28,15 +28,18 @@ class Config {
 		this.addDependency("Umber Corpse", "Corpse auto Announcer");
 		this.addDependency("Vanguard Corpse", "Corpse auto Announcer");
 
+
+		this.addDependency("Mineshaft Sound Type", "Mineshaft Sound");
 		this.addDependency("Mineshaft Sound Volume", "Mineshaft Sound");
-		
+		this.addDependency("Mineshaft Sound Test", "Mineshaft Sound");
+
 		this.addDependency("Corpse Display size", "Corpse Display");
 		this.addDependency("Corpse Display location", "Corpse Display");
 	}
 
 	riftTimeMoveGui = new Gui();
 	heartsMoveGui = new Gui();
-	corpseMoveGui= new Gui()
+	corpseMoveGui = new Gui();
 
 	/**
 	 * Rift Category
@@ -174,26 +177,45 @@ class Config {
 		subcategory: "Glacite Tunnels",
 	})
 	MineshaftSound = false;
+	@SelectorProperty({
+        name: 'Mineshaft Sound Type',
+        description: 'Choose the type',
+        category: "Mining",
+		subcategory: "Glacite Tunnels",
+        options: ['Stone Rumble', 'Voice'],
+    })
+    MineshaftSoundType = 0; // Stores index of option
 	@SliderProperty({
 		name: "Mineshaft Sound Volume",
-		description: "Adjust the volume of the sound that plays when a mineshaft spawns.\n\nTo test the volume please use the command §e/testmineshaft",
+		description: "Adjust the volume of the sound that plays when a mineshaft spawns.\n\nTo test the sound and tile use the command §e/testmineshaft §ror §e/mineshafttest",
 		category: "Mining",
 		subcategory: "Glacite Tunnels",
 		min: 0,
 		max: 100,
 	})
-	MineshaftSoundVolume = 40;
+	MineshaftSoundVolume = 50;
+	@ButtonProperty({
+		name: "Mineshaft Sound Test",
+		description: "Test the Sound that plays when a mineshaft spawns",
+		category: "Mining",
+		subcategory: "Glacite Tunnels",
+		placeholder: "Play Sound",
+	})
+	MineshaftSoundTest() {
+		import { playSound } from "./features/mining/shaft";
+		playSound();
+	}
 
 	@SwitchProperty({
 		name: "Corpse Esp",
-		description: "Toggle the Corpse Waypoint (esp) feature",
+		description: "Toggle the Corpse Waypoint (esp) feature\n\n§6This feature is basically a cheat, but it is not detectable by Hypixel, unless you send the coordinates into the chat (it's most unlikely they will actually check for that).\n§6Mining through a wall to get to a corpse is also suspicious in case a staff member spectates",
 		category: "Mining",
 		subcategory: "Glacite Mineshafts",
 	})
 	CorpseEsp = false;
 	@SwitchProperty({
 		name: "Corpse auto Announcer",
-		description: "Automatically sends the corpse location into the Party chat\n§cThis feature can cause bans since this is a chat macro that announces the location of the corpse based on an esp",
+		description: "Automatically sends the corpse location into the Party chat\n\n§cThis feature could cause bans since this is a chat macro that announces the location of the corpse based on an esp",
 		category: "Mining",
 		subcategory: "Glacite Mineshafts",
 	})
@@ -226,8 +248,6 @@ class Config {
 		subcategory: "Glacite Mineshafts",
 	})
 	VanguardCorpse = false;
-
-
 
 	@SwitchProperty({
 		name: "Corpse Display",
@@ -266,7 +286,6 @@ class Config {
 		subcategory: "Commands",
 	})
 	transferCommands = false;
-
 
 	/**
 	 * Misc

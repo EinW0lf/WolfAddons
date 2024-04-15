@@ -1,6 +1,11 @@
 {
 	"moduleName": "WolfAddons",
-	"latestVersion": "0.1.3",
+	"latestVersion": "0.1.4",
 	"author": "einwolf",
-	"changelog": ["Added waypoints (esp) for glacial mineshaft corpses.", "added a \"Title\" for when a mineshaft spawns", "added a sound on mineshaft spawn", "added support for most party transfer commands (prefixes: \".\", \"!\", \"?\" commands: \"pt\", \"ptme\", \"transfer\")"]
+	"changelog": [
+		"Added a button to play the sound of a mineshaft spawn, instead of needing to use a command to test it",
+		"Added another sound to the Glacite Mineshaft spawn (selectable)",
+		"Text in the config is a bit more clear now",
+		"fixed a module being required, while it wasn't listed in t he required modules"
+	]
 }
