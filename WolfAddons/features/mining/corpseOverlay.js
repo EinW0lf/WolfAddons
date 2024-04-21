@@ -1,6 +1,7 @@
 import Config from "../../config";
-import { data } from "../../utils/Utils";
+import { data } from "../../utils/utils";
 import { getScoreboard } from "../../utils/getScoreboard";
+import { handleDrag } from "../../utils/guiDragger";
 
 function getCorpses() {
 	let corpseData = [];
@@ -48,20 +49,29 @@ function formatCorpses() {
 
 register("dragged", (mx, my, x, y) => {
 	if (!Config.corpseMoveGui.isOpen()) return;
-	data.corpseDisplay.x = x;
-	data.corpseDisplay.y = y;
-	data.save();
+	handleDrag("corpseMoveGui", "corpseDisplay", x, y, 125, 40);
 });
 
 register("renderOverlay", () => {
-	if (Config.corpseMoveGui.isOpen()) {
+	const scale = data.corpseDisplay.scale || 1;
+
+	if (Config.corpseMoveGui.isOpen() || (Config.moveAllGuis.isOpen() && Config.corpseDisplay)) {
+		Renderer.translate((data.corpseDisplay.x || 10) - 2, (data.corpseDisplay.y || 10) - 3);
+		Renderer.scale(scale);
+		Renderer.drawRect(0xb3808080, 0, 0, 124, 40 - scale / 2);
+
+		if (!Config.moveAllGuis.isOpen()) {
+			const guiText = ["§cClick in the gray box to drag the GUI element around.", "§cUse your scroll wheel to resize it.", "", `§cCurrent element scale: ${scale.toFixed(1)}`];
+			const screenMiddle = Renderer.screen.getWidth() / 2;
+			Renderer.drawStringWithShadow(guiText.map((t) => ChatLib.getCenteredText(t)).join("\n"), screenMiddle - 293 / 2, 40);
+		}
+
 		Renderer.translate(data.corpseDisplay.x || 0, data.corpseDisplay.y || 0);
-		Renderer.scale(Config.corpseDisplayScale);
+		Renderer.scale(scale);
 		Renderer.drawStringWithShadow(formatCorpses(), 0, 0);
-	}
-	if (Config.corpseDisplay && getScoreboard().some((name) => name.includes("Mineshafts"))) {
+	} else if (Config.corpseDisplay && getScoreboard().some((name) => name.includes("Mineshafts"))) {
 		Renderer.translate(data.corpseDisplay.x || 0, data.corpseDisplay.y || 0);
-		Renderer.scale(Config.corpseDisplayScale);
+		Renderer.scale(scale);
 		Renderer.drawStringWithShadow(formatCorpses(), 0, 0);
 	} else return;
 });

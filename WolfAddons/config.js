@@ -2,7 +2,7 @@ import { @Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchPrope
 
 @Vigilant("WolfAddons", "WolfAddons", {
 	getCategoryComparator: () => (a, b) => {
-		const categories = ["Rift", "Slayer", "Mining", "Party", "Misc"];
+		const categories = ["Misc", "Rift", "Slayer", "Mining", "Party"];
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	},
 })
@@ -10,14 +10,12 @@ class Config {
 	constructor() {
 		this.initialize(this);
 
-		this.addDependency("Resize", "Rift Time Display");
-		this.addDependency("Move", "Rift Time Display");
+		this.addDependency("Rift Time Display location", "Rift Time Display");
 
 		this.addDependency("Time left", "Rift Time Warning");
 		this.addDependency("Turn Timer Red", "Rift Time Warning");
 		this.addDependency("Show Rift Time Display when reaching Warn time", "Rift Time Warning");
 
-		this.addDependency("Hearts Overlay size", "Hearts Overlay");
 		this.addDependency("Hearts Overlay location", "Hearts Overlay");
 
 		this.addDependency("Steak Stake Highlight Color", "Steak Stake Highlight");
@@ -32,9 +30,10 @@ class Config {
 		this.addDependency("Mineshaft Sound Volume", "Mineshaft Sound");
 		this.addDependency("Mineshaft Sound Test", "Mineshaft Sound");
 
-		this.addDependency("Corpse Display size", "Corpse Display");
 		this.addDependency("Corpse Display location", "Corpse Display");
 	}
+
+	moveAllGuis = new Gui();
 
 	riftTimeMoveGui = new Gui();
 	heartsMoveGui = new Gui();
@@ -52,18 +51,9 @@ class Config {
 		subcategory: "Rift Time Display",
 	})
 	riftTimeDisplay = false;
-	@DecimalSliderProperty({
-		name: "Resize",
-		description: "Resize the Rift Time Display",
-		category: "Rift",
-		subcategory: "Rift Time Display",
-		minF: 0.1,
-		maxF: 5.0,
-	})
-	riftTimeDisplayScale = 1.0;
 	@ButtonProperty({
-		name: "Move",
-		description: "Move the Rift Time Display",
+		name: "Rift Time Display location",
+		description: "Move the rift time display to a new location",
 		category: "Rift",
 		subcategory: "Rift Time Display",
 		placeholder: "Move",
@@ -122,15 +112,6 @@ class Config {
 		subcategory: "Riftstalker Bloodfiend",
 	})
 	heartsDisplay = false;
-	@DecimalSliderProperty({
-		name: "Hearts Overlay size",
-		description: "Resize the Hearts Overlay",
-		category: "Slayer",
-		subcategory: "Riftstalker Bloodfiend",
-		minF: 0.1,
-		maxF: 5.0,
-	})
-	heartsDisplayScale = 1.0;
 	@ButtonProperty({
 		name: "Hearts Overlay location",
 		description: "Move the Hearts Overlay",
@@ -256,15 +237,6 @@ class Config {
 		subcategory: "Glacite Mineshafts",
 	})
 	corpseDisplay = false;
-	@DecimalSliderProperty({
-		name: "Corpse Display size",
-		description: "Resize the Corpse Display",
-		category: "Mining",
-		subcategory: "Glacite Mineshafts",
-		minF: 0.1,
-		maxF: 5.0,
-	})
-	corpseDisplayScale = 1.0;
 	@ButtonProperty({
 		name: "Corpse Display location",
 		description: "Move the Corpse Display",
@@ -296,6 +268,44 @@ class Config {
 		category: "Misc",
 	})
 	updateChecker = false;
+
+	@ButtonProperty({
+		name: "Move all Gui Elements",
+		description: "Move all gui elements on the screen",
+		category: "Misc",
+		placeholder: "Move",
+	})
+	MoveAllButton() {
+		this.moveAllGuis.open();
+	}
+
+	@ButtonProperty({
+		name: "Discord",
+		description: "Join the official discord server of WolfAddons",
+		category: "Misc",
+		subcategory: "Links",
+		placeholder: "Join",
+	})
+	DiscordButton() {
+		const Desktop = Java.type("java.awt.Desktop");
+		const URI = Java.type("java.net.URI");
+		const DiscordInvite = new URI("https://discord.gg/GuBsgv7Cmy");
+		Desktop.getDesktop().browse(DiscordInvite);
+	}
+
+	@ButtonProperty({
+		name: "Github",
+		description: "Open the repository of WolfAddons",
+		category: "Misc",
+		subcategory: "Links",
+		placeholder: "Open",
+	})
+	GithubButton() {
+		const Desktop = Java.type("java.awt.Desktop");
+		const URI = Java.type("java.net.URI");
+		const DiscordInvite = new URI("https://github.com/EinW0lf/WolfAddons");
+		Desktop.getDesktop().browse(DiscordInvite);
+	}
 }
 
 export default new Config();

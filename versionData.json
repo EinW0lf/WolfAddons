@@ -1,6 +1,6 @@
 {
 	"moduleName": "WolfAddons",
-	"latestVersion": "0.2.1",
+	"latestVersion": "0.2.2",
 	"author": "einwolf",
-	"changelog": ["Bumping the version to 0.2.1, due to previously wrong versioning", "Fixed a bug that would make the corpse announcer slower over time"]
+	"changelog": ["Improved the positioning and resizing of all gui elements"]
 }

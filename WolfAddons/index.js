@@ -3,7 +3,7 @@
 
 import "./utils/updateChecker";
 
-import "./utils/FirstInstall";
+import "./utils/firstInstall";
 import "./commands/wolfAddonsCommand";
 import "./commands/riftCommand";
 

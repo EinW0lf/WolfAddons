@@ -5,16 +5,19 @@ export const data = new PogObject(
 	{
 		firstTime: true,
 		riftTimeDisplay: {
-			x: 0,
-			y: 0,
+			x: 10,
+			y: 10,
+			scale: 1,
 		},
 		heartsDisplay: {
-			x: 0,
-			y: 0,
+			x: 10,
+			y: 10,
+			scale: 1,
 		},
 		corpseDisplay: {
-			x: 0,
-			y: 0,
+			x: 10,
+			y: 10,
+			scale: 1,
 		},
 	},
 	"data/data.json"

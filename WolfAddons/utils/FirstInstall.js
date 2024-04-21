@@ -1,4 +1,4 @@
-import { data } from "./Utils";
+import { data } from "./utils";
 
 const checkFirstInstall = () => {
 	if (!data.firstTime) return;

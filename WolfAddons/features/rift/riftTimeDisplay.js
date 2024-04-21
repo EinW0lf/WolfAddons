@@ -1,17 +1,19 @@
 import Config from "../../config";
-import { data } from "../../utils/Utils";
+import { data } from "../../utils/utils";
 import Skyblock from "../../../BloomCore/Skyblock";
 import { getScoreboard } from "../../utils/getScoreboard";
+import { handleDrag } from "../../utils/guiDragger";
 
 let previousText;
 let previousSecondsLeft = 0;
 let lastUpdateTime = Date.now();
 
+export let boxLength = 200;
+const boxHeight = 12;
+
 register("dragged", (mx, my, x, y) => {
 	if (!Config.riftTimeMoveGui.isOpen()) return;
-	data.riftTimeDisplay.x = x;
-	data.riftTimeDisplay.y = y;
-	data.save();
+	handleDrag("riftTimeMoveGui", "riftTimeDisplay", x, y, boxLength, boxHeight);
 });
 
 function formatTime(minutes, seconds) {
@@ -66,40 +68,35 @@ function getRiftTime() {
 			}
 		}
 	} else {
-		return "§b10m 30s";
+		return "§3Rift Time: §4 §b10m 30s";
 	}
 }
 
 register("renderOverlay", () => {
-	if (Config.riftTimeMoveGui.isOpen() && (!Config.riftTimeDisplay || Skyblock.area !== "The Rift")) {
+	const scale = data.riftTimeDisplay.scale || 1;
+	const riftTime = getRiftTime();
+	const textLength = riftTime ? Renderer.getStringWidth(riftTime) : Renderer.getStringWidth(previousText);
+
+	boxLength = textLength + 4;
+
+	if (Config.riftTimeMoveGui.isOpen() || (Config.moveAllGuis.isOpen() && Config.riftTimeDisplay)) {
+		Renderer.translate((data.riftTimeDisplay.x || 10) - 2, (data.riftTimeDisplay.y || 10) - 3);
+		Renderer.scale(scale);
+		Renderer.drawRect(0xb3808080, 0, 0, boxLength, boxHeight - scale / 2);
+
+		if (!Config.moveAllGuis.isOpen()) {
+			const guiText = ["§cClick in the gray box to drag the GUI element around.", "§cUse your scroll wheel to resize it.", "", `§cCurrent element scale: ${scale.toFixed(1)}`];
+			const screenMiddle = Renderer.screen.getWidth() / 2;
+			Renderer.drawStringWithShadow(guiText.map((t) => ChatLib.getCenteredText(t)).join("\n"), screenMiddle - 293 / 2, 40);
+		}
+	}
+
+	if ((Config.riftTimeDisplay && Skyblock.area === "The Rift") || (Config.riftTimeWarningDisplay && Skyblock.area === "The Rift" && Player.getXPLevel() <= Config.riftTimeWarningSeconds) || Config.riftTimeMoveGui.isOpen() || (Config.moveAllGuis.isOpen() && Config.riftTimeDisplay)) {
 		Renderer.translate(data.riftTimeDisplay.x, data.riftTimeDisplay.y);
-		Renderer.scale(Config.riftTimeDisplayScale);
-		const riftTime = getRiftTime();
+		Renderer.scale(scale);
 		if (riftTime) {
 			previousText = riftTime;
-			Renderer.drawStringWithShadow(riftTime, 0, 0);
-		} else if (previousText) {
-			Renderer.drawStringWithShadow(previousText, 0, 0);
 		}
-	} else if (Config.riftTimeDisplay && Skyblock.area === "The Rift") {
-		Renderer.translate(data.riftTimeDisplay.x, data.riftTimeDisplay.y);
-		Renderer.scale(Config.riftTimeDisplayScale);
-		const riftTime = getRiftTime();
-		if (riftTime) {
-			previousText = riftTime;
-			Renderer.drawStringWithShadow(riftTime, 0, 0);
-		} else if (previousText) {
-			Renderer.drawStringWithShadow(previousText, 0, 0);
-		}
-	} else if (Config.riftTimeWarningDisplay && Skyblock.area === "The Rift" && Player.getXPLevel() <= Config.riftTimeWarningSeconds) {
-		Renderer.translate(data.riftTimeDisplay.x, data.riftTimeDisplay.y);
-		Renderer.scale(Config.riftTimeDisplayScale);
-		const riftTime = getRiftTime();
-		if (riftTime) {
-			previousText = riftTime;
-			Renderer.drawStringWithShadow(riftTime, 0, 0);
-		} else if (previousText) {
-			Renderer.drawStringWithShadow(previousText, 0, 0);
-		}
+		Renderer.drawStringWithShadow(previousText || "", 0, 0);
 	}
 });
