@@ -1,7 +1,9 @@
 export function getScoreboard() {
 	const scoreboard = [];
 
-	const Lines = Scoreboard.getLines();
+	const Lines = Scoreboard?.getLines();
+	if (!Lines) return null;
+
 	Lines.forEach((element) => {
 		scoreboard.push(
 			element

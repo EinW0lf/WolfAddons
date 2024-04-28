@@ -15,3 +15,5 @@ import "./mining/shaft";
 
 /** party */
 import "./party/commands";
+
+import "./events/hoppity/clickerMenu";

@@ -12,7 +12,8 @@ WolfAddons is a Hypixel Skyblock module with various features to improve your ga
 
 **Features:**
 
--   **Corpse Esp** Esp for Mineshaft corpses, can also be used to send the coordinates into the chat
+-   **NEW** - **Auto Bunny upgrades** Maximizes Chocolate Factory efficiency by automatically upgrading the most cost-effective bunny.
+-   **Corpse Esp:** Esp for Mineshaft corpses, can also be used to send the coordinates into the chat
 
 -   **/rift** A shortcut command for the /warp wizard
 -   **Rift Timer:** Displays a timer on your screen that shows how much time you have left in the current rift.

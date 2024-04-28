@@ -69,7 +69,7 @@ register("renderOverlay", () => {
 		Renderer.translate(data.corpseDisplay.x || 0, data.corpseDisplay.y || 0);
 		Renderer.scale(scale);
 		Renderer.drawStringWithShadow(formatCorpses(), 0, 0);
-	} else if (Config.corpseDisplay && getScoreboard().some((name) => name.includes("Mineshafts"))) {
+	} else if (Config.corpseDisplay && getScoreboard()?.some((name) => name.includes("Mineshafts"))) {
 		Renderer.translate(data.corpseDisplay.x || 0, data.corpseDisplay.y || 0);
 		Renderer.scale(scale);
 		Renderer.drawStringWithShadow(formatCorpses(), 0, 0);

@@ -2,7 +2,7 @@ import { @Vigilant, @TextProperty, @ColorProperty, @ButtonProperty, @SwitchPrope
 
 @Vigilant("WolfAddons", "WolfAddons", {
 	getCategoryComparator: () => (a, b) => {
-		const categories = ["Misc", "Rift", "Slayer", "Mining", "Party"];
+		const categories = ["Misc", "Rift", "Slayer", "Mining","Events", "Party"];
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	},
 })
@@ -258,6 +258,25 @@ class Config {
 		subcategory: "Commands",
 	})
 	transferCommands = false;
+
+	/**
+	 * Events
+	 */
+	@SwitchProperty({
+		name: "Bunny Upgrader",
+		description: "Automatically buys the bunny with the best Chocolate ratio.\n\n&c&lThis feature is considered a macro so use it at your own risk.",
+		category: "Events",
+		subcategory: "Chocolate Factory",
+	})
+	bunnyUpgrader = false;
+
+	@SwitchProperty({
+		name: "Auto Pup-Up Bunnies",
+		description: "Automatically clicks on Bunnies that Pop-Up in the Chocolate Factory menu.\n\n&c&lThis feature is considered a macro so use it at your own risk.",
+		category: "Events",
+		subcategory: "Chocolate Factory",
+	})
+	popupBunny = false;
 
 	/**
 	 * Misc

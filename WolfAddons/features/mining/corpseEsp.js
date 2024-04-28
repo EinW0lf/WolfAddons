@@ -23,7 +23,7 @@ function checkWorldEntities() {
 }
 
 function checkMineshaft() {
-	isInMineshaft = getScoreboard().some((name) => name.includes("Mineshafts"));
+	isInMineshaft = getScoreboard()?.some((name) => name.includes("Mineshafts"));
 }
 
 function updateEntitiesWithBoots() {
