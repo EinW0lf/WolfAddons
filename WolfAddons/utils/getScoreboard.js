@@ -2,7 +2,7 @@ export function getScoreboard() {
 	const scoreboard = [];
 
 	const Lines = Scoreboard?.getLines();
-	if (!Lines) return null;
+	if (!Lines || Lines.length >= 0) return null;
 
 	Lines.forEach((element) => {
 		scoreboard.push(

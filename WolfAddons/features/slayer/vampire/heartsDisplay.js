@@ -34,7 +34,7 @@ register("renderOverlay", () => {
 		}
 	}
 
-	if ((Config.heartsDisplay && getScoreboard().some((name) => name === "Stillgore Château" || name === "Oubliette")) || Config.heartsMoveGui.isOpen() || (Config.moveAllGuis.isOpen() && Config.heartsDisplay)) {
+	if ((Config.heartsDisplay && getScoreboard()?.some((name) => name === "Stillgore Château" || name === "Oubliette")) || Config.heartsMoveGui.isOpen() || (Config.moveAllGuis.isOpen() && Config.heartsDisplay)) {
 		Renderer.translate(data.heartsDisplay.x, data.heartsDisplay.y);
 		Renderer.scale(scale);
 		Renderer.drawStringWithShadow(getPlayerHearts(), 0, 0);

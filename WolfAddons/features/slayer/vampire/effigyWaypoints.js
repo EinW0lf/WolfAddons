@@ -23,7 +23,7 @@ function extractPositions(effigyString) {
 }
 
 register("renderWorld", () => {
-	if (Config.effigyWaypoints && getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
+	if (Config.effigyWaypoints && getScoreboard()?.some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
 		Scoreboard.getLines().forEach((element) => {
 			if (element.toString().includes("Effigies:")) {
 				const result = extractPositions(element.toString());

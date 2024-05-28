@@ -1,7 +1,7 @@
 import { data } from "./utils";
 
 const checkFirstInstall = () => {
-	if (!data.firstTime) return;
+	if (!data.firstTime) return installCheck.unregister();
 	data.firstTime = false;
 	data.save();
 
@@ -9,8 +9,9 @@ const checkFirstInstall = () => {
 	ChatLib.chat(`&b&m${ChatLib.getChatBreak(" ")}`);
 	msgs.forEach((a) => ChatLib.chat(ChatLib.getCenteredText(a)));
 	ChatLib.chat(`&b&m${ChatLib.getChatBreak(" ")}`);
+	installCheck.unregister();
 };
 
-register("tick", () => {
+const installCheck = register("tick", () => {
 	checkFirstInstall();
 });

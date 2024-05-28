@@ -18,14 +18,14 @@ function checkWorldEntities() {
 }
 
 register("step", () => {
-	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
+	if (!Config.highlightVampires || !getScoreboard()?.some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
 		return;
 	}
 	checkWorldEntities();
 }).setFps(refreshRate);
 
 register("renderWorld", () => {
-	if (!Config.highlightVampires || !getScoreboard().some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
+	if (!Config.highlightVampires || !getScoreboard()?.some((name) => ["Stillgore Château", "Oubliette"].includes(name))) {
 		return;
 	}
 	for (let i = 0; i < entities.length; i++) {

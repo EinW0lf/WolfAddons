@@ -1,15 +1,14 @@
 import Config from "../../../config";
 
-const S2FPacketSetSlot = Java.type("net.minecraft.network.play.server.S2FPacketSetSlot");
 const C0EPacketClickWindow = Java.type("net.minecraft.network.play.client.C0EPacketClickWindow");
 const sendWindowClick = (windowId, slot, clickType, actionNumber = 0) => Client.sendPacket(new C0EPacketClickWindow(windowId ?? Player.getContainer().getWindowId(), slot, clickType ?? 0, 0, null, actionNumber));
 
 let canClick = false;
-let bestWorker = 29;
+let bestWorker = 28;
 let bestCost = 0;
 
 register("guiRender", () => {
-	if (!Config.bunnyUpgrader) return;
+	if (!Config.bunnyUpgrader && !Config.popupBunny) return;
 	if (canClick) return;
 	const container = Player.getContainer();
 	if (container && container.name === "Chocolate Factory") {
@@ -19,40 +18,43 @@ register("guiRender", () => {
 });
 
 const upgradeRabbit = () => {
+	canClick = false;
 	const container = Player.getContainer();
-	if (!container || !container.name === "Chocolate Factory") return (canClick = false);
+	if (!container || !container.name === "Chocolate Factory") return;
 
 	const chocoData = Player.getContainer().getItems()[13];
-	if (chocoData === null) return (canClick = false);
+	if (chocoData === null) return;
 
 	const chocolate = parseInt(chocoData.getName().removeFormatting().replace(/\D/g, ""));
 
-	findWorker();
+	if (Config.bunnyUpgrader) findWorker();
 	const clickableBunny = findBunny();
 
-	if (bestCost <= chocolate) {
-		sendWindowClick(null, bestWorker, 0);
-	} else if (clickableBunny && Config.popupBunny) {
+	if (clickableBunny && Config.popupBunny) {
 		sendWindowClick(null, clickableBunny, 0);
+	} else if (bestCost <= chocolate && bestCost > 0 && Config.bunnyUpgrader) {
+		sendWindowClick(null, bestWorker, 0);
+		bestCost = 0;
 	}
-	canClick = false;
 };
 
 function findWorker() {
 	const items = Player.getContainer().getItems();
 	const workers = [];
-	for (let i = 29; i < 34; i++) workers.push(items[i].getLore());
+	for (let i = 28; i < 35; i++) workers.push(items[i].getLore());
 
 	let maxValue = 0;
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 7; i++) {
 		let worker = workers[i];
 		let index = worker.findIndex((line) => line === "§5§o§7Cost");
-		if (index === -1) continue;
+		if (index === -1) {
+			continue;
+		}
 		let cost = parseInt(worker[index + 1].removeFormatting().replace(/\D/g, ""));
 		let value = (i + 1) / cost;
 
 		if (value > maxValue) {
-			bestWorker = 29 + i;
+			bestWorker = 28 + i;
 			maxValue = value;
 			bestCost = cost;
 		}
