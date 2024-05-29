@@ -1,10 +1,9 @@
 {
     "moduleName": "WolfAddons",
-    "latestVersion": "0.2.4",
+    "latestVersion": "0.2.5",
     "author": "einwolf",
     "changelog": [
-        "- fixed an issue with the update checker, that resulted in it only checking for an update on chattriggers reload",
-        "- fixed an issue with the chocolate upgrade script that made the script upgrade the 1st rabbit over and over once all upgrades were done",
-        "- the chocolate upgrade script now supports the two newly added rabbits (uncle and dog)"
+        "- Resolved the scoreboard issue that was causing crashes.",
+        "- Corrected additional issues introduced in the previous fix."
     ]
 }
