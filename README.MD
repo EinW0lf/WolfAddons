@@ -5,7 +5,7 @@ WolfAddons is a Hypixel Skyblock module with various features to improve your ga
 **Installation:**
 
 1.  Go to releases on the right side of the repository
-2.  Download the latest release (WolfAddons.x.x.x.zip)
+2.  Download the latest release (WolfAddons-x.x.x.zip)
 3.  Go into your [Chattriggers](https://www.chattriggers.com/) modules folder (the folder is located in ".minecraft\config\ChatTriggers\modules", or do "/ct files" ingame)
 4.  Extract WolfAddons zip file into the folder
 5.  Start your game, or do "/ct load" when your game was running while installing the module
