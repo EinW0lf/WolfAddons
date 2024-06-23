@@ -248,6 +248,14 @@ class Config {
 		this.corpseMoveGui.open();
 	}
 
+	@SwitchProperty({
+		name: "Cancel Crystal interaction",
+		description: "Prevents you from picking up crystals in the crystal hollows. §e(basically prevents you from interacting with barriers §leverywhere§r§e)",
+		category: "Mining",
+		subcategory: "Crystal Hollows",
+	})
+	crystalCancel = false;
+
 	/**
 	 * Party
 	 */

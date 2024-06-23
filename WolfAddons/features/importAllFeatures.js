@@ -17,3 +17,5 @@ import "./mining/shaft";
 import "./party/commands";
 
 import "./events/hoppity/clickerMenu";
+
+import "./mining/preventCrystal";

@@ -1,9 +1,8 @@
 {
     "moduleName": "WolfAddons",
-    "latestVersion": "0.2.5",
+    "latestVersion": "0.2.6",
     "author": "einwolf",
     "changelog": [
-        "- Resolved the scoreboard issue that was causing crashes.",
-        "- Corrected additional issues introduced in the previous fix."
+        "+ added a barrier interaction blocker (useful for farming bal and not wanting to break the wishing compass)"
     ]
 }
