@@ -3,6 +3,6 @@
     "latestVersion": "0.2.6",
     "author": "einwolf",
     "changelog": [
-        "+ added a barrier interaction blocker (useful for farming bal and not wanting to break the wishing compass)"
+        "added a barrier interaction blocker (useful for farming bal and not wanting to break the wishing compass)"
     ]
 }
